@@ -1,0 +1,23 @@
+<h2>Track Workout</h2>
+<form>
+  <label>Workout:</label>
+  <select [(ngModel)]="selectedWorkout" name="selectedWorkout">
+    <option *ngFor="let workout of workouts" [value]="workout">
+      {{workout.sets}} sets of {{workout.repetitions}} reps at {{workout.weight}} kg ({{workout.setType}})
+    </option>
+  </select><br />
+
+  <label>Completed Sets:</label>
+  <input type="number" min="0" [(ngModel)]="completedSets" name="completedSets" /><br />
+
+  <button type="submit">Track Workout</button>
+</form>
+<!-- Add this code after the form -->
+<h3>Workout Progress:</h3>
+<div *ngIf="selectedWorkout">
+  <p>
+    {{selectedWorkout.sets}} sets of {{selectedWorkout.repetitions}} reps at {{selectedWorkout.weight}} kg ({{selectedWorkout.setType}})
+  </p>
+  <progress value="{{completedSets}}" max="{{selectedWorkout.sets}}"></progress>
+  <p>{{completedSets}} / {{selectedWorkout.sets}} sets completed</p>
+</div>
