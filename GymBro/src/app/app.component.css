@@ -12,3 +12,30 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.app-container {
+  display: flex;
+}
+
+.scroll-menu {
+  overflow-y: scroll;
+  max-height: 100vh;
+  width: 250px;
+  border-right: 1px solid #ccc;
+}
+
+.exercise-details-container {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.workout-overview-container {
+  border-left: 1px solid #ccc;
+  width: 250px;
+  padding: 1rem;
+}
+input {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

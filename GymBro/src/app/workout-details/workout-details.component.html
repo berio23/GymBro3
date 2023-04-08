@@ -1,0 +1,6 @@
+<h2>{{ workout.name }}</h2>
+<ul>
+  <li *ngFor="let exercise of workout.exercises">
+    {{ exercise.setType }}: {{ exercise.sets }} sets of {{ exercise.repetitions }} reps at {{ exercise.weight }} kg
+  </li>
+</ul>

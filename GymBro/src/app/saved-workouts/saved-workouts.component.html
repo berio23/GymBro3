@@ -1,0 +1,8 @@
+<div class="saved-workouts">
+  <h2>Saved Workouts</h2>
+  <ul>
+    <li *ngFor="let workout of savedWorkouts" (click)="openDialog(workout)">
+      {{ workout.name }}
+    </li>
+  </ul>
+</div>
