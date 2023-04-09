@@ -6,25 +6,6 @@
   <a routerLink="/saved-workouts">Saved Workouts</a>
   <a routerLink="/tips">Tips</a>
 </nav>
-<div class="app-container">
-  <div class="scroll-menu">
-    <div *ngFor="let exercise of exercises" (click)="onSelect(exercise)">
-      {{ exercise.name }}
-    </div>
-  </div>
-  <div class="exercise-details-container">
-    <app-exercise-details [exercise]="selectedExercise"></app-exercise-details>
-    <button (click)="addToWorkout()">Add to workout</button>
-  </div>
-  <div class="workout-overview-container">
-    <app-workout-overview [workoutExercises]="workoutExercises"></app-workout-overview>
-    <button (click)="finishWorkout()">Finish workout</button>
-  </div>
-</div>
-<div class="workout-overview-container">
-  <app-workout-overview [workoutExercises]="workoutExercises"></app-workout-overview>
-  <input [(ngModel)]="workoutName" placeholder="Workout name">
-  <button (click)="finishWorkout()">Finish workout</button>
-</div>
+
 
 <router-outlet></router-outlet>

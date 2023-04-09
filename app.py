@@ -94,6 +94,17 @@ def save_complete_workout():
     db.session.commit()
     return jsonify(new_complete_workout.serialize())
 
+@app.route('/api/complete-workouts/<int:workout_id>', methods=['DELETE'])
+def delete_complete_workout(workout_id):
+    workout = CompleteWorkout.query.get(workout_id)
+    if workout:
+        db.session.delete(workout)
+        db.session.commit()
+        return jsonify({'message': 'Workout deleted successfully.'})
+    else:
+        return jsonify({'error': 'Workout not found.'}), 404
+
+
 with app.app_context():
     db.create_all()
 

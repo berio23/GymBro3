@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { WorkoutDetailsComponent } from '../workout-details/workout-details.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-saved-workouts',
@@ -12,10 +12,21 @@ import { WorkoutDetailsComponent } from '../workout-details/workout-details.comp
 export class SavedWorkoutsComponent implements OnInit {
   savedWorkouts: any[] = [];
 
-  constructor(private http: HttpClient, public dialog: MatDialog ) { }
-
+  constructor(private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) { }
   ngOnInit(): void {
     this.getSavedWorkouts();
+  }
+
+  deleteWorkout(workoutId: number): void {
+    this.http.delete(`http://localhost:5000/api/complete-workouts/${workoutId}`).subscribe(
+      (response: any) => {
+        this.snackBar.open(response.message, 'Close', { duration: 3000 });
+        this.getSavedWorkouts();
+      },
+      (error: any) => {
+        this.snackBar.open(error.error.error, 'Close', { duration: 3000 });
+      }
+    );
   }
 
   getSavedWorkouts(): void {

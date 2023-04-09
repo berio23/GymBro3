@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+/.angular/cache/
+
 # C extensions
 *.so
 
@@ -127,3 +129,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+GymBro/.angular/cache/15.2.4/babel-webpack/aad5f9dda3338ca8bf7b520e2060d1d0a04cbd68cf6e45c2d3a22699765d8735.json

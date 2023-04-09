@@ -15,6 +15,15 @@ import { SavedWorkoutsComponent } from './saved-workouts/saved-workouts.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { ResizableModule } from 'angular-resizable-element';
+
 
 
 const routes: Routes = [
@@ -42,7 +51,16 @@ const routes: Routes = [
     MatDialogModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    ResizableModule,
+    MatCardModule,
+    MatDividerModule,
+    MatInputModule,
+    MatListModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

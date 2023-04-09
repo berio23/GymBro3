@@ -1,28 +1,23 @@
 <h2>Create Workout</h2>
-<form (submit)="onSubmit(); $event.preventDefault()">
-  <label>Sets:</label>
-  <input type="number" min="1" [(ngModel)]="sets" name="sets" /><br />
+<div class="app-container">
+  <mat-card class="scroll-menu">
+    <mat-list>
+      <mat-list-item *ngFor="let exercise of exercises" (click)="onSelect(exercise)">
+        {{ exercise.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
 
-  <label>Repetitions:</label>
-  <input type="number" min="1" [(ngModel)]="repetitions" name="repetitions" /><br />
-
-  <label>Weight:</label>
-  <input type="number" min="0" [(ngModel)]="weight" name="weight" /><br />
-
-  <label>Type:</label>
-  <select [(ngModel)]="setType" name="setType">
-    <option value="warmup">Warmup</option>
-    <option value="working">Working</option>
-    <option value="error">Error</option>
-  </select><br />
-
-  <button type="submit">Create Workout</button>
-</form>
-
-<!-- Add this code after the form -->
-<h3>Created Workouts:</h3>
-<ul>
-  <li *ngFor="let workout of workouts">
-    {{workout.sets}} sets of {{workout.repetitions}} reps at {{workout.weight}} kg ({{workout.setType}})
-  </li>
-</ul>
+  <div class="exercise-details-container">
+    <app-exercise-details [exercise]="selectedExercise"></app-exercise-details>
+    <button mat-raised-button color="primary" (click)="addToWorkout()">Add to workout</button>
+  </div>
+  <mat-card class="workout-overview-container">
+    <app-workout-overview [workoutExercises]="workoutExercises"></app-workout-overview>
+    <mat-form-field appearance="outline">
+      <mat-label>Workout name</mat-label>
+      <input matInput [(ngModel)]="workoutName" placeholder="Workout name">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="finishWorkout()">Finish workout</button>
+  </mat-card>
+</div>
