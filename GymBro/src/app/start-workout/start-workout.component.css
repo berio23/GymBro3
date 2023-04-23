@@ -1,0 +1,19 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #3f51b5;
+  padding: 1rem;
+}
+
+nav a {
+  color: white;
+}
+
+nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+.dark-text {
+  color: #333; /* Change this to your desired text color */
+}

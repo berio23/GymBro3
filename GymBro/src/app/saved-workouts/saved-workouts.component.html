@@ -1,0 +1,11 @@
+<div class="saved-workouts">
+  <h2>Saved Workouts</h2>
+  <ul>
+    <li *ngFor="let workout of savedWorkouts">
+      <span (click)="openDialog(workout)">
+        {{ workout.name }}
+      </span>
+      <button mat-icon-button (click)="deleteWorkout(workout.id)"><mat-icon>delete</mat-icon></button>
+    </li>
+  </ul>
+</div>

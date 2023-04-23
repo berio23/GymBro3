@@ -1,0 +1,32 @@
+<div class="container my-4">
+  <h2 class="mb-4">Workout Sessions</h2>
+  <div *ngFor="let session of sessions" class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title">Workout ID: {{ session.workout_id }}</h3>
+      <p class="card-text">Date: {{ session.date }}</p>
+      <p class="card-text">Exercises:</p>
+      <div *ngFor="let exercise of session.exercises">
+        <h4>{{ exercise.name }}</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Set</th>
+              <th scope="col">Weight (kg)</th>
+              <th scope="col">Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let set of exercise.sets; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ set.weight }}</td>
+              <td>{{ set.reps }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer text-end">
+      <button (click)="deleteSession(session.id)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+    </div>
+  </div>
+</div>

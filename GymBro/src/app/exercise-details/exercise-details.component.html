@@ -1,0 +1,14 @@
+<div class="exercise-card" *ngIf="exercise">
+  <h2>{{ exercise.name }}</h2>
+  <p>Force: {{ exercise.force }}</p>
+  <p>Level: {{ exercise.level }}</p>
+  <p>Mechanic: {{ exercise.mechanic }}</p>
+  <p>Equipment: {{ exercise.equipment }}</p>
+  <p>Primary Muscles: {{ exercise.primaryMuscles.join(', ') }}</p>
+  <p>Secondary Muscles: {{ exercise.secondaryMuscles.join(', ') }}</p>
+  <p>Category: {{ exercise.category }}</p>
+  <h3>Instructions:</h3>
+  <ol>
+    <li *ngFor="let instruction of exercise.instructions">{{ instruction }}</li>
+  </ol>
+</div>

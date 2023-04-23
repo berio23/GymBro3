@@ -1,0 +1,23 @@
+<h2>Create Workout</h2>
+<div class="app-container">
+  <mat-card class="scroll-menu">
+    <mat-list>
+      <mat-list-item *ngFor="let exercise of exercises" (click)="onSelect(exercise)">
+        {{ exercise.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+
+  <div class="exercise-details-container">
+    <app-exercise-details [exercise]="selectedExercise"></app-exercise-details>
+    <button mat-raised-button color="primary" (click)="addToWorkout()">Add to workout</button>
+  </div>
+  <mat-card class="workout-overview-container">
+    <app-workout-overview [workoutExercises]="workoutExercises"></app-workout-overview>
+    <mat-form-field appearance="outline">
+      <mat-label>Workout name</mat-label>
+      <input matInput [(ngModel)]="workoutName" placeholder="Workout name">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="finishWorkout()">Finish workout</button>
+  </mat-card>
+</div>
