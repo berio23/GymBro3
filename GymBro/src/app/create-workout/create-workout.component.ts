@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CompleteWorkoutService } from '../complete-workout.service';
+import { CompleteWorkoutService } from '../services/complete-workout.service';
 
 @Component({
   selector: 'app-create-workout',
@@ -34,23 +34,24 @@ export class CreateWorkoutComponent implements OnInit {
     }
   }
 
-  finishWorkout(): void {
-    if (!this.workoutName) {
-      alert('Please enter a workout name.');
-      return;
-    }
-
-    const workout = {
-      name: this.workoutName,
-      exercises: JSON.stringify(this.workoutExercises)
-    };
-
-    this.completeWorkoutService.saveCompleteWorkout(workout).subscribe(() => {
-      console.log('Workout saved:', workout);
-      this.workoutName = '';
-      this.workoutExercises = [];
-    }, (error) => {
-      console.error('Error saving workout:', error);
-    });
+finishWorkout(): void {
+  if (!this.workoutName) {
+    alert('Please enter a workout name.');
+    return;
   }
+
+  const workout = {
+    name: this.workoutName,
+    exercises: this.workoutExercises // Remove JSON.stringify()
+  };
+
+  this.completeWorkoutService.saveCompleteWorkout(workout).subscribe(() => {
+    console.log('Workout saved:', workout);
+    this.workoutName = '';
+    this.workoutExercises = [];
+  }, (error) => {
+    console.error('Error saving workout:', error);
+  });
+}
+
 }

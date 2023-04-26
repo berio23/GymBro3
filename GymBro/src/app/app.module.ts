@@ -27,6 +27,8 @@ import { StartWorkoutComponent } from './start-workout/start-workout.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SavedSessionsComponent } from './saved-sessions/saved-sessions.component';
 import { WorkoutStatisticsComponent } from './workout-statistics/workout-statistics.component';
+import { WorkoutSessionService } from './services/workout-session.service';
+
 
 
 
@@ -72,7 +74,7 @@ const routes: Routes = [
     MatListModule,
     MatButtonToggleModule
   ],
-  providers: [],
+  providers: [WorkoutSessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

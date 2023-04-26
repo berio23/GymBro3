@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { StartWorkoutService } from '../start-workout.service';
+import { StartWorkoutService } from '../services/start-workout.service';
 import { interval } from 'rxjs';
 
 @Component({

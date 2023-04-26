@@ -28,10 +28,14 @@ with app.app_context():
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)  # Add name attribute
+    description = db.Column(db.String, nullable=True)  # Add description attribute
+    date = db.Column(db.Date, nullable=False)  # Add date attribute
     sets = db.Column(db.Integer, nullable=False)
     repetitions = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Float, nullable=False)
     setType = db.Column(db.String, nullable=False)
+    exercises = db.Column(JSON, nullable=True)  # Add exercises attribute
 
     def serialize(self):
         return {
@@ -39,8 +43,13 @@ class Workout(db.Model):
             'name': self.name,
             'description': self.description,
             'date': self.date.strftime('%Y-%m-%d'),
+            'sets': self.sets,
+            'repetitions': self.repetitions,
+            'weight': self.weight,
+            'setType': self.setType,
             'exercises': self.exercises if isinstance(self.exercises, list) else json.loads(self.exercises) if self.exercises else []
         }
+
 
 class WorkoutSession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -163,13 +172,18 @@ def save_complete_workout():
 @app.route('/api/complete-workouts/<int:workout_id>', methods=['DELETE'])
 def delete_complete_workout(workout_id):
     workout = CompleteWorkout.query.get(workout_id)
-    if workout:
-        db.session.delete(workout)
-        db.session.commit()
-        return jsonify({'message': 'Workout deleted successfully.'})
-    else:
-        return jsonify({'error': 'Workout not found.'}), 404
 
+    if workout is None:
+        return jsonify({'message': 'Workout not found'}), 404
+
+    # Manually delete associated workout sessions
+    WorkoutSession.query.filter_by(workout_id=workout_id).delete()
+    db.session.commit()
+
+    db.session.delete(workout)
+    db.session.commit()
+
+    return jsonify({'message': 'Workout has been deleted'})
 with app.app_context():
     db.create_all()
 

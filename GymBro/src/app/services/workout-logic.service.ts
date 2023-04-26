@@ -43,7 +43,5 @@ export class WorkoutLogicService {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
 
-
-
   // Weitere Methoden für die Geschäftslogik
 }

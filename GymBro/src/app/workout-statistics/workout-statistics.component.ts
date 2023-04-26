@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkoutLogicService } from '../workout-logic.service';
-import { WorkoutSessionService } from '../workout-session.service';
+import { WorkoutLogicService } from '../services/workout-logic.service';
+import { WorkoutSessionService } from '../services/workout-session.service';
 
 @Component({
   selector: 'app-workout-statistics',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkoutSessionService } from '../workout-session.service';
+import { WorkoutSessionService } from '../services/workout-session.service';
+import { IWorkoutSession } from '../services/iworkout-session';
 
 @Component({
   selector: 'app-saved-sessions',
@@ -16,7 +17,7 @@ export class SavedSessionsComponent implements OnInit {
   }
 
   fetchSessions(): void {
-    this.workoutSessionService.getWorkoutSessions().subscribe((data) => {
+    this.workoutSessionService.getWorkoutSessions().subscribe((data: IWorkoutSession[]) => {
       this.sessions = data;
     });
   }
